@@ -36,5 +36,15 @@ export function replaceElementsInArrayAtAGivenPlace(
   index,
   ...newElements
 ) {
-  // Write your code here
+  if (
+    typeof index !== 'number' ||
+    !Array.isArray(array) ||
+    index < 0 ||
+    index >= array.length
+  ) {
+    throw new Error('Unsupported type')
+  }
+  const result = [...array]
+  result.splice(index, newElements.length , ...newElements)
+  return result
 }
