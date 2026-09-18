@@ -3,7 +3,13 @@
  * @return {array<string>} An array with all words isolated, and with empty strings removed
  */
 export function splitAllStringsByWordAndFilterEmptyOnes(array) {
-  // Write your code here
+  if (!Array.isArray(array)) {
+    throw new Error('Unsupported type')
+  }
+  return array
+    .join(' ')
+    .split(' ')
+    .filter((word) => word !== '')
 }
 
 /**
