@@ -46,5 +46,14 @@ export function computeAverage(grades) {
  * @return {number} rounded average to 1 decimal
  */
 export function roundedAverage(grades) {
-  // Write your code here
+  if (!Array.isArray(grades) || grades.length === 0 || grades.some((grade) => typeof grade !== 'number' || Number.isNaN(grade))
+  ) {
+    throw new Error('Unsupported type')
+  }
+  let total = 0;
+  for (const grade of grades) {
+    total = total + grade
+  }
+  const average = total / grades.length;
+  return Math.round(average * 10) / 10;
 }
