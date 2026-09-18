@@ -27,7 +27,18 @@ export function roundNumberToOneDecimals(n) {
  * @return {number} average with full precision
  */
 export function computeAverage(grades) {
-  // Write your code here
+  if (
+    !Array.isArray(grades) ||
+    grades.length === 0 ||
+    grades.some((grade) => typeof grade !== 'number' || Number.isNaN(grade))
+  ) {
+    throw new Error('Unsupported type')
+  }
+  let total = 0
+  for (const grade of grades) {
+    total = total + grade
+  }
+  return total / grades.length
 }
 
 /**
