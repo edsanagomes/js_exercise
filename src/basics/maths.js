@@ -3,7 +3,12 @@
  * @return {number} sphere volume
  */
 export function computeSphereVolume(diameter) {
-  // Write your code here
+  if (typeof diameter !== 'number' || Number.isNaN(diameter) || diameter < 0) {
+    //Sphere can't have negative size
+    throw new Error('Unsupported type')
+  }
+  const radius = diameter / 2
+  return (4 / 3) * Math.PI * radius ** 3
 }
 
 /**
