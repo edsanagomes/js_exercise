@@ -45,6 +45,6 @@ export function replaceElementsInArrayAtAGivenPlace(
     throw new Error('Unsupported type')
   }
   const result = [...array]
-  result.splice(index, newElements.length , ...newElements)
+  result.splice(index, newElements.length, ...newElements)
   return result
 }
