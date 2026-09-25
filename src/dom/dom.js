@@ -33,5 +33,13 @@ export function addElementsInDOM() {
  * @param {array<{name: string, color: string}>} listElements
  */
 export function addAListInDomFromAnArrayOfObjects(listElements) {
-  // Write your code here
+  const element = document.getElementById('add-list-here')
+  const ul = document.createElement('ul')
+  for (const item of listElements) {
+    const li = document.createElement('li')
+    li.textContent = item.name
+    li.style.backgroundColor = item.color
+    ul.appendChild(li)
+  }
+  element.appendChild(ul) //will show all items
 }
