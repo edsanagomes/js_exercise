@@ -4,7 +4,12 @@
  * If the input is empty, you should not trigger the alert.
  */
 export function displayInputContentInAlertOnEnterKey() {
-  // Write your code here
+  const element = document.getElementById('write-some-text')
+  element.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      alert('Enter')
+    }
+  })
 }
 
 /**
