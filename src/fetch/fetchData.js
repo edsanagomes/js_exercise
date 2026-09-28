@@ -7,5 +7,15 @@
  * Handle potential network errors gracefully.
  */
 export function fetchDataOnClick() {
-  // Write your code here
+  const user = document.getElementById('click-to-fetch')
+  const url = 'https://api.github.com/octocat'
+  user.addEventListener('click', async () => {
+    try {
+      const response = await fetch(url)
+      const result = await response.text()
+      document.getElementById('display-here').textContent = result
+    } catch (e) {
+      console.error(e)
+    }
+  })
 }
