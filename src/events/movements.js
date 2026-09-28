@@ -66,5 +66,9 @@ export function hoverFocusAndBlur() {
  * Also apply this new color to the text of the input's labels.
  */
 export function changesOnInputEvents() {
-  // Write your code here
+  input.addEventListener('input', () => {
+    const newColor = randomRGB()
+    previousColor = newColor
+    label.style.color = newColor
+  })
 }
