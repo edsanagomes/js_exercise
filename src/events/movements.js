@@ -4,7 +4,12 @@
  * You need to display coordinates as follows : "x: 232, y: 332"
  */
 export function mouseMovements() {
-  // Write your code here
+  const displayMouse = document.getElementById('mouse-coordinates')
+  document.addEventListener('mousemove', (e) => {
+    const x = e.pageX // measure coordinates relative to the entire webpage
+    const y = e.pageY
+    displayMouse.textContent = `x:${x}, y:${y}` // shapes it into the exact format the exercise asked for
+  })
 }
 
 const randomRGB = () => {
