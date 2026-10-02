@@ -5,11 +5,13 @@
  */
 export function displayInputContentInAlertOnEnterKey() {
   const element = document.getElementById('write-some-text')
-  element.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-      alert('Enter')
-    }
-  })
+  if (element) {
+    element.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && element.value.trim() !== '') {
+        alert(element.value)
+      }
+    })
+  }
 }
 
 /**
@@ -20,13 +22,25 @@ export function displayInputContentInAlertOnEnterKey() {
 export function addElementsInListOnEnterKey() {
   const input = document.getElementById('list-input')
   const list = document.getElementById('list')
-  input.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-      const newItem = document.createElement('li')
-      newItem.textContent = input.value
-      list.appendChild(newItem)
+  if (input && list) {
+    const addItem = () => {
+      const text = input.value.trim() // Check that the input is not empty
+      if (text !== '') {
+        const newItem = document.createElement('li')
+        newItem.textContent = text
+        list.appendChild(newItem)
+        input.value = '' // clears the input after adding
+      }
     }
-  })
+    input.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        addItem()
+      }
+    })
+    input.addEventListener('blur', () => {
+      addItem()
+    })
+  }
 }
 
 /**
@@ -35,9 +49,11 @@ export function addElementsInListOnEnterKey() {
  */
 export function removeElementsFromListWhenClicked() {
   const list = document.getElementById('list')
-  list.addEventListener('click', (e) => {
-    if (e.target.tagName === 'LI') {
-      e.target.remove()
-    }
-  })
+  if (list) {
+    list.addEventListener('click', (e) => {
+      if (e.target.tagName === 'LI') {
+        e.target.remove()
+      }
+    })
+  }
 }
