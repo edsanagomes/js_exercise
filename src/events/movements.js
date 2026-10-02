@@ -32,14 +32,18 @@ let previousColor = ''
  */
 export function hoverFocusAndBlur() {
   const input = document.getElementById('focus-me')
-  const label = input?.labels ? input.labels[0] : null
-  if (input && label) {
-    const originalText = label.textContent
+  const labels = input?.labels ? Array.from(input.labels) : []
+  if (input && labels.length > 0) {
+    const originalTexts = labels.map((label) => label.textContent)
     input.addEventListener('mouseenter', () => {
-      label.textContent = 'Yes, you hover me !'
+      labels.forEach((label) => {
+        label.textContent = 'Yes, you hover me !'
+      })
     })
     input.addEventListener('mouseleave', () => {
-      label.textContent = originalText
+      labels.forEach((label, index) => {
+        label.textContent = originalTexts[index]
+      })
     })
     const colors = [
       randomRGB(),
@@ -69,14 +73,14 @@ export function hoverFocusAndBlur() {
  */
 export function changesOnInputEvents() {
   const input = document.getElementById('focus-me')
-  const label = input?.labels ? input.labels[0] : null
+  const labels = input?.labels ? Array.from(input.labels) : []
   if (input) {
     input.addEventListener('input', () => {
       const newColor = randomRGB()
       previousColor = newColor
-      if (label) {
+      labels.forEach((label) => {
         label.style.color = newColor
-      }
+      })
     })
   }
 }
